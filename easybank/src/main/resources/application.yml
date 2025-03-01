@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: ${SPRING_APP_NAME:EasyBank}
+  security:
+    user: ${SECURITY_USER:user}
+    password: ${SECURITY_PASSWORD:12345}
+
+logging:
+  pattern:
+    console: ${LOG_PATTERN:%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr([%thread]){cyan} %clr(%-5level){magenta} %clr(%logger{36}){blue} - %msg%n}
