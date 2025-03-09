@@ -8,6 +8,7 @@ class EasybankApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("Hello World");
 	}
 
 }
