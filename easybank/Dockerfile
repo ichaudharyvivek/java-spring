@@ -1,20 +1,21 @@
 FROM eclipse-temurin:17-jdk
 
+# Install Maven
+RUN apt-get update && apt-get install -y maven
+
 WORKDIR /app
 
-# Copy Maven files for dependency resolution
+# Copy Maven configuration
 COPY pom.xml .
-COPY mvnw .
-COPY .mvn .mvn
 
 # Download dependencies (this layer can be cached)
-RUN ./mvnw dependency:go-offline -B
+RUN mvn dependency:go-offline -B
 
 # Copy the rest of the application
 COPY src ./src
 
 # Build the application
-RUN ./mvnw package -DskipTests
+RUN mvn package -DskipTests
 
 # Run the application
 ENTRYPOINT ["java", "-jar", "target/*.jar"]
